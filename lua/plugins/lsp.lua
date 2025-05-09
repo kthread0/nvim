@@ -178,15 +178,14 @@ return {
 				command = ":FormatWrite",
 			})
 			local dap = require("dap")
-			dap.adapters.gdb = {
+			dap.adapters.lldb = {
 				type = "executable",
-				command = "gdb",
-				args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+				command = "lldb",
 			}
 			dap.configurations.c = {
 				{
 					name = "Launch",
-					type = "gdb",
+					type = "lldb",
 					request = "launch",
 					program = function()
 						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -196,7 +195,7 @@ return {
 				},
 				{
 					name = "Select and attach to process",
-					type = "gdb",
+					type = "lldb",
 					request = "attach",
 					program = function()
 						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -208,8 +207,8 @@ return {
 					cwd = "${workspaceFolder}",
 				},
 				{
-					name = "Attach to gdbserver :1234",
-					type = "gdb",
+					name = "Attach to lldbserver :1234",
+					type = "lldb",
 					request = "attach",
 					target = "localhost:1234",
 					program = function()
