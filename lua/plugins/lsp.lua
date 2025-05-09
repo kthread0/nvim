@@ -20,7 +20,7 @@ return {
 		opts = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html" },
+				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "nix" },
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
 				indent = { enable = true },
@@ -136,7 +136,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd" },
+				ensure_installed = { "lua_ls", "clangd", "nil_ls" },
 				automatic_installation = true,
 				handlers = {},
 			})
@@ -146,6 +146,7 @@ return {
 					"stylua", -- Lua Formatter
 					"clang-format", -- C/CXX Formatter
 					"cpplint", -- C/CXX Linter
+					"nixfmt" -- Nix formatter
 				},
 			})
 			require("hlargs").setup()
