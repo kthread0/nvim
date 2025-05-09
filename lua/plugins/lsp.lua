@@ -20,7 +20,7 @@ return {
 		opts = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "html", "nix" },
+				ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "javascript", "html", "nix" },
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
 				indent = { enable = true },
@@ -136,19 +136,10 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "nil_ls" },
-				automatic_installation = true,
 				handlers = {},
 			})
 			require("mason-nvim-dap").setup()
-			require("mason-tool-installer").setup({
-				ensure_installed = {
-					"stylua", -- Lua Formatter
-					"clang-format", -- C/CXX Formatter
-					"cpplint", -- C/CXX Linter
-					"nixfmt" -- Nix formatter
-				},
-			})
+			require("mason-tool-installer").setup({})
 			require("hlargs").setup()
 			require("hlargs").enable()
 			require("lint").linters_by_ft =
@@ -165,6 +156,7 @@ return {
 						lua = { require("formatter.filetypes.lua").stylua },
 						c = { require("formatter.filetypes.c").clang_format },
 						cpp = { require("formatter.filetypes.cpp").clang_format },
+						nix = { require("formatter.filetypes.nix").nixfmt },
 						["*"] = {
 							require("formatter.filetypes.any").remove_trailing_whitespace,
 						},
@@ -177,46 +169,6 @@ return {
 				group = "__formatter__",
 				command = ":FormatWrite",
 			})
-			local dap = require("dap")
-			dap.adapters.lldb = {
-				type = "executable",
-				command = "lldb",
-			}
-			dap.configurations.c = {
-				{
-					name = "Launch",
-					type = "lldb",
-					request = "launch",
-					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-					end,
-					cwd = "${workspaceFolder}",
-					stopAtBeginningOfMainSubprogram = false,
-				},
-				{
-					name = "Select and attach to process",
-					type = "lldb",
-					request = "attach",
-					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-					end,
-					pid = function()
-						local name = vim.fn.input("Executable name (filter): ")
-						return require("dap.utils").pick_process({ filter = name })
-					end,
-					cwd = "${workspaceFolder}",
-				},
-				{
-					name = "Attach to lldbserver :1234",
-					type = "lldb",
-					request = "attach",
-					target = "localhost:1234",
-					program = function()
-						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-					end,
-					cwd = "${workspaceFolder}",
-				},
-			}
 		end,
 	},
 	{

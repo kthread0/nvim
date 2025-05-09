@@ -22,7 +22,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.termguicolors = true
 vim.o.showtabline = 2
-vim.opt.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
+vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 
 -- Setup lazy.nvim
 require("lazy").setup({
