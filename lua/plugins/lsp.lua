@@ -20,7 +20,7 @@ return {
 		opts = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "javascript", "html", "nix" },
+				ensure_installed = { "c", "cpp", "cmake", "bash", "nasm", "asm", "lua", "luadoc", "vim", "vimdoc", "query", "javascript", "typescript", "tsx", "html", "css", "nix", "make", "meson", "json", "kdl", "markdown", "markdown_inline", "ninja" },
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
 				indent = { enable = true },
@@ -136,6 +136,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
+				automatic_installation = true,
 				handlers = {},
 			})
 			require("mason-nvim-dap").setup()
@@ -147,6 +148,7 @@ return {
 					lua = { "luacheck" },
 					c = { "cpplint" },
 					cpp = { "cpplint" },
+					nix = { "statix" },
 				}, vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
 						require("lint").try_lint()
