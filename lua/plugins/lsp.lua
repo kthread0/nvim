@@ -8,7 +8,6 @@ return {
 			"mfussenegger/nvim-dap",
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-lint",
-			"mhartington/formatter.nvim",
 			"xzbdmw/colorful-menu.nvim",
 			"L3MON4D3/LuaSnip",
 			"jay-babu/mason-nvim-dap.nvim",
@@ -16,11 +15,38 @@ return {
 			{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"m-demare/hlargs.nvim",
+			"stevearc/conform.nvim",
 		},
 		opts = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "cpp", "cmake", "bash", "nasm", "asm", "lua", "luadoc", "vim", "vimdoc", "query", "javascript", "typescript", "tsx", "html", "css", "nix", "make", "meson", "json", "kdl", "markdown", "markdown_inline", "ninja", "commonlisp" },
+				ensure_installed = {
+					"c",
+					"cpp",
+					"cmake",
+					"bash",
+					"nasm",
+					"asm",
+					"lua",
+					"luadoc",
+					"vim",
+					"vimdoc",
+					"query",
+					"javascript",
+					"typescript",
+					"tsx",
+					"html",
+					"css",
+					"nix",
+					"make",
+					"meson",
+					"json",
+					"kdl",
+					"markdown",
+					"markdown_inline",
+					"ninja",
+					"commonlisp",
+				},
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
 				indent = { enable = true },
@@ -143,34 +169,38 @@ return {
 			require("mason-tool-installer").setup({})
 			require("hlargs").setup()
 			require("hlargs").enable()
-			require("lint").linters_by_ft =
+			require("lint").linters_by_ft = {
 				{
 					lua = { "luacheck" },
 					c = { "cpplint" },
 					cpp = { "cpplint" },
 					nix = { "statix" },
-				}, vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+				},
+				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
 						require("lint").try_lint()
 					end,
-				}), require("formatter").setup({
-					filetype = {
-						lua = { require("formatter.filetypes.lua").stylua },
-						c = { require("formatter.filetypes.c").clang_format },
-						cpp = { require("formatter.filetypes.cpp").clang_format },
-						nix = { require("formatter.filetypes.nix").nixfmt },
-						["*"] = {
-							require("formatter.filetypes.any").remove_trailing_whitespace,
-						},
-					},
-				})
-			local augroup = vim.api.nvim_create_augroup
-			local autocmd = vim.api.nvim_create_autocmd
-			augroup("__formatter__", { clear = true })
-			autocmd("BufWritePost", {
-				group = "__formatter__",
-				command = ":FormatWrite",
+				}),
+			}
+			require("conform").setup({
+				formatters_by_ft = {
+					lua = { "stylua" },
+					-- Conform will run multiple formatters sequentially
+					python = { "isort", "black" },
+					-- You can customize some of the format options for the filetype (:help conform.format)
+					rust = { "rustfmt", lsp_format = "fallback" },
+					-- Conform will run the first available formatter
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+				},
 			})
+			require("conform").setup({
+				format_on_save = {
+					-- These options will be passed to conform.format()
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			})
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 		end,
 	},
 	{
