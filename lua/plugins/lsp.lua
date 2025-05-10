@@ -20,7 +20,7 @@ return {
 		opts = {},
 		config = function()
 			require("nvim-treesitter.configs").setup({
-				ensure_installed = { "c", "cpp", "cmake", "bash", "nasm", "asm", "lua", "luadoc", "vim", "vimdoc", "query", "javascript", "typescript", "tsx", "html", "css", "nix", "make", "meson", "json", "kdl", "markdown", "markdown_inline", "ninja" },
+				ensure_installed = { "c", "cpp", "cmake", "bash", "nasm", "asm", "lua", "luadoc", "vim", "vimdoc", "query", "javascript", "typescript", "tsx", "html", "css", "nix", "make", "meson", "json", "kdl", "markdown", "markdown_inline", "ninja", "commonlisp" },
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
 				indent = { enable = true },
