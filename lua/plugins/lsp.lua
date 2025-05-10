@@ -22,6 +22,7 @@ return {
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"c",
+					"llvm",
 					"cpp",
 					"cmake",
 					"bash",
@@ -159,10 +160,19 @@ return {
 				},
 			})
 			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					},
+				},
+				max_concurrent_installers = 10,
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				automatic_installation = true,
+				ensure_installed = { "lua_ls", "clangd", "nil_ls" },
+				automatic_enable = true,
 				handlers = {},
 			})
 			require("mason-nvim-dap").setup()
@@ -172,8 +182,7 @@ return {
 			require("lint").linters_by_ft = {
 				{
 					lua = { "luacheck" },
-					c = { "cpplint" },
-					cpp = { "cpplint" },
+					c = { "clang-tidy" },
 					nix = { "statix" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -184,13 +193,10 @@ return {
 			}
 			require("conform").setup({
 				formatters_by_ft = {
+					c = { "clang-format" },
 					lua = { "stylua" },
-					-- Conform will run multiple formatters sequentially
-					python = { "isort", "black" },
-					-- You can customize some of the format options for the filetype (:help conform.format)
-					rust = { "rustfmt", lsp_format = "fallback" },
-					-- Conform will run the first available formatter
-					javascript = { "prettierd", "prettier", stop_after_first = true },
+					nix = { "nixfmt" },
+					["*"] = { "codespell" },
 				},
 			})
 			require("conform").setup({
