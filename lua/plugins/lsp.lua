@@ -9,7 +9,7 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-lint",
 			"xzbdmw/colorful-menu.nvim",
-			"L3MON4D3/LuaSnip",
+			{ "L3MON4D3/LuaSnip",                build = "make install_jsregexp" },
 			"jay-babu/mason-nvim-dap.nvim",
 			{ "nvim-tree/nvim-web-devicons",     opts = {} },
 			{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
