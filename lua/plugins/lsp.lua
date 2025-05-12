@@ -11,7 +11,7 @@ return {
 			"xzbdmw/colorful-menu.nvim",
 			"L3MON4D3/LuaSnip",
 			"jay-babu/mason-nvim-dap.nvim",
-			{ "nvim-tree/nvim-web-devicons", opts = {} },
+			{ "nvim-tree/nvim-web-devicons",     opts = {} },
 			{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"m-demare/hlargs.nvim",
@@ -171,7 +171,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "nil_ls" },
+				ensure_installed = { "lua_ls", "clangd" },
 				automatic_enable = true,
 				handlers = {},
 			})
@@ -183,7 +183,6 @@ return {
 				{
 					lua = { "luacheck" },
 					c = { "clang-tidy" },
-					nix = { "statix" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
@@ -195,7 +194,6 @@ return {
 				formatters_by_ft = {
 					c = { "clang-format" },
 					lua = { "stylua" },
-					nix = { "nixfmt" },
 					["*"] = { "codespell" },
 				},
 			})
