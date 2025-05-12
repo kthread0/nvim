@@ -13,5 +13,5 @@
 - ripgrep, fd, fzf for finder tools and fuzzy search
 
 ## Optional requirements
-- ImageMagick for image supports if you use kitty
+- ImageMagick for image support if you use kitty
 - lazygit for git UI integration
