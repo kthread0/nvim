@@ -21,8 +21,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.termguicolors = true
-vim.o.showtabline = 2
+vim.opt.showtabline = 2
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+vim.opt.number = true
+vim.opt.redrawtime = 0
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -63,5 +65,3 @@ require("lazy").setup({
 		throttle = 1000 / 60,
 	},
 })
-
-vim.cmd("colorscheme onedark_dark")
