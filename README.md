@@ -8,7 +8,7 @@
 - cmake, meson, ninja, make (GNU flavor recommended, I tried BSD Make and didn't work, make a pull request if you figure it out!"
 - Wget and curl for networking related features such as downloading pre-built binaries
 - Rust toolchain (cargo, rustc, etc)
-- clangd for C/C++ development
+- clangd, clang-tidy, clang-format for C/C++ development
 - Python for general plugins
 - ripgrep, fd, fzf for finder tools and fuzzy search
 
