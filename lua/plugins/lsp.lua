@@ -33,6 +33,7 @@ return {
 					"vim",
 					"vimdoc",
 					"query",
+					"regex",
 					"javascript",
 					"typescript",
 					"tsx",
