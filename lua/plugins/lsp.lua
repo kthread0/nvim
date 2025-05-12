@@ -9,9 +9,9 @@ return {
 			"rcarriga/nvim-dap-ui",
 			"mfussenegger/nvim-lint",
 			"xzbdmw/colorful-menu.nvim",
-			{ "L3MON4D3/LuaSnip",                build = "make install_jsregexp" },
+			{ "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets" } },
 			"jay-babu/mason-nvim-dap.nvim",
-			{ "nvim-tree/nvim-web-devicons",     opts = {} },
+			{ "nvim-tree/nvim-web-devicons", opts = {} },
 			{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"m-demare/hlargs.nvim",
@@ -206,6 +206,7 @@ return {
 				},
 			})
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 	{
