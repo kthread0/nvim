@@ -3,10 +3,12 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"BurntSushi/ripgrep",
 		},
 		config = function()
 			require("telescope").setup({
+				defaults = {
+					layout_strategy = "flex",
+				},
 				extensions = {
 					fzf = {
 						fuzzy = true, -- false will only do exact matching

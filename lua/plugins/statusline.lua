@@ -1,8 +1,9 @@
 return {
 	{
 		"sschleemilch/slimline.nvim",
-		dependencies = { "lewis6991/gitsigns.nvim" },
+		dependencies = { "lewis6991/gitsigns.nvim", { "echasnovski/mini.icons", version = false } },
 		config = function()
+			require("mini.icons").setup()
 			require("slimline").setup({
 				bold = true, -- makes primary parts bold
 
@@ -30,7 +31,7 @@ return {
 				-- `<component>.follow` can point to another component name to follow its style (e.g. 'progress' following 'mode' by default). Follow can be disabled by setting it to `false`
 				configs = {
 					mode = {
-						verbose = false, -- Mode as single letter or as a word
+						verbose = true, -- Mode as single letter or as a word
 						hl = {
 							normal = "Type",
 							insert = "Function",
