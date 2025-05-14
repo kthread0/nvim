@@ -173,18 +173,26 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd" },
+				ensure_installed = { "lua_ls", "clangd", "bashls" },
 				automatic_enable = true,
 				handlers = {},
 			})
 			require("mason-nvim-dap").setup()
-			require("mason-tool-installer").setup({})
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"stylua",
+					"luacheck",
+					"shellharden",
+				},
+				auto_update = true,
+			})
 			require("hlargs").setup()
 			require("hlargs").enable()
 			require("lint").linters_by_ft = {
 				{
 					lua = { "luacheck" },
 					c = { "clang-tidy" },
+					bash = { "shellharden" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
@@ -196,6 +204,7 @@ return {
 				formatters_by_ft = {
 					c = { "clang-format" },
 					lua = { "stylua" },
+					bash = { "shellharden" },
 					["*"] = { "codespell" },
 				},
 			})
