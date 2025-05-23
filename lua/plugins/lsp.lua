@@ -49,6 +49,7 @@ return {
 					"ninja",
 					"commonlisp",
 					"latex",
+					"rust",
 				},
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
@@ -173,7 +174,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "bashls" },
+				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer" },
 				automatic_enable = true,
 				handlers = {},
 			})
@@ -183,6 +184,7 @@ return {
 					"stylua",
 					"luacheck",
 					"shellharden",
+					"bacon",
 				},
 				auto_update = true,
 			})
@@ -193,6 +195,7 @@ return {
 					lua = { "luacheck" },
 					c = { "clang-tidy" },
 					bash = { "shellharden" },
+					rust = { "bacon" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
@@ -205,6 +208,7 @@ return {
 					c = { "clang-format" },
 					lua = { "stylua" },
 					bash = { "shellharden" },
+					rust = { "rustfmt" },
 					["*"] = { "codespell" },
 				},
 			})
@@ -252,8 +256,9 @@ return {
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = {
-				ghost_text = { enabled = true },
-				menu = { draw = { treesitter = { "lsp" } } },
+				keyword = { range = "full" },
+				ghost_text = { enabled = true, show_without_selection = true },
+				menu = { auto_show = true, draw = { treesitter = { "lsp" } } },
 				documentation = { auto_show = true },
 			},
 
@@ -263,7 +268,14 @@ return {
 				default = { "lsp", "path", "snippets", "buffer", "cmdline" },
 			},
 
-			signature = { enabled = true },
+			signature = {
+				enabled = true,
+				trigger = {
+					enabled = true,
+					show_on_keyword = true,
+					show_on_insert = true,
+				},
+			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
 			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
