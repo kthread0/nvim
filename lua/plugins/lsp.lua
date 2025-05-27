@@ -174,7 +174,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer" },
+				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer", "html", "eslint" },
 				automatic_enable = true,
 				handlers = {},
 			})
@@ -185,6 +185,9 @@ return {
 					"luacheck",
 					"shellharden",
 					"bacon",
+					"eslint_d",
+					"prettierd",
+					"htmlhint",
 				},
 				auto_update = true,
 			})
@@ -196,6 +199,9 @@ return {
 					c = { "clang-tidy" },
 					bash = { "shellharden" },
 					rust = { "bacon" },
+					javascript = { "eslint_d" },
+					typescript = { "eslint_d" },
+					html = { "htmlhint" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
@@ -209,6 +215,9 @@ return {
 					lua = { "stylua" },
 					bash = { "shellharden" },
 					rust = { "rustfmt" },
+					javascript = { "prettierd" },
+					typescript = { "prettierd" },
+					html = { "prettierd" },
 					["*"] = { "codespell" },
 				},
 			})
