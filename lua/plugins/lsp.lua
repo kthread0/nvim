@@ -34,6 +34,7 @@ return {
 					"vimdoc",
 					"query",
 					"regex",
+					"astro",
 					"javascript",
 					"typescript",
 					"tsx",
@@ -174,7 +175,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer", "html", "eslint" },
+				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer", "html", "eslint", "astro" },
 				automatic_enable = true,
 				handlers = {},
 			})
@@ -202,6 +203,7 @@ return {
 					javascript = { "eslint_d" },
 					typescript = { "eslint_d" },
 					html = { "htmlhint" },
+					astro = { "astro" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
