@@ -188,7 +188,7 @@ return {
 					"bacon",
 					"eslint_d",
 					"prettierd",
-					"cmakelang"
+					"cmakelang",
 					"htmlhint",
 
 				},
