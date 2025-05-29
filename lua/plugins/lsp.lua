@@ -175,7 +175,7 @@ return {
 				pip = { upgrade_pip = true },
 			})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer", "html", "eslint", "astro" },
+				ensure_installed = { "lua_ls", "clangd", "bashls", "rust_analyzer", "html", "eslint", "astro", "neocmake" },
 				automatic_enable = true,
 				handlers = {},
 			})
@@ -188,7 +188,9 @@ return {
 					"bacon",
 					"eslint_d",
 					"prettierd",
+					"cmakelang"
 					"htmlhint",
+
 				},
 				auto_update = true,
 			})
@@ -204,6 +206,7 @@ return {
 					typescript = { "eslint_d" },
 					html = { "htmlhint" },
 					astro = { "astro" },
+					cmake = { "cmakelang" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function()
@@ -220,6 +223,7 @@ return {
 					javascript = { "prettierd" },
 					typescript = { "prettierd" },
 					html = { "prettierd" },
+					cmake = { "cmakelang" },
 					["*"] = { "codespell" },
 				},
 			})
