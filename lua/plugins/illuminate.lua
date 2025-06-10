@@ -1,8 +1,8 @@
 return {
 	{
 		"RRethy/vim-illuminate",
-		config = function ()
-			require ("illuminate").configure ({
+		config = function()
+			require("illuminate").configure({
 				-- providers: provider used to get references in the buffer, ordered by priority
 				providers = {
 					"lsp",
@@ -52,7 +52,7 @@ return {
 				-- should_enable: a callback that overrides all other settings to
 				-- enable/disable illumination. This will be called a lot so don't do
 				-- anything expensive in it.
-				should_enable = function (bufnr) return true end,
+				should_enable = function(bufnr) return true end,
 				-- case_insensitive_regex: sets regex case sensitivity
 				case_insensitive_regex = true,
 				-- disable_keymaps: disable default keymaps

@@ -18,9 +18,9 @@ return {
 			"stevearc/conform.nvim",
 		},
 		opts = {},
-		config = function ()
-			require ("nvim-treesitter.install").prefer_git = true
-			require ("nvim-treesitter.configs").setup ({
+		config = function()
+			require("nvim-treesitter.install").prefer_git = true
+			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"c",
 					"llvm",
@@ -164,7 +164,7 @@ return {
 					},
 				},
 			})
-			require ("mason").setup ({
+			require("mason").setup({
 				ui = {
 					icons = {
 						package_installed = "✓",
@@ -175,7 +175,7 @@ return {
 				max_concurrent_installers = 10,
 				pip = { upgrade_pip = true },
 			})
-			require ("mason-lspconfig").setup ({
+			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
 					"clangd",
@@ -189,8 +189,8 @@ return {
 				automatic_enable = true,
 				handlers = {},
 			})
-			require ("mason-nvim-dap").setup ()
-			require ("mason-tool-installer").setup ({
+			require("mason-nvim-dap").setup()
+			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"stylua",
 					"luacheck",
@@ -202,9 +202,9 @@ return {
 				},
 				auto_update = true,
 			})
-			require ("hlargs").setup ()
-			require ("hlargs").enable ()
-			require ("lint").linters_by_ft = {
+			require("hlargs").setup()
+			require("hlargs").enable()
+			require("lint").linters_by_ft = {
 				{
 					lua = { "luacheck" },
 					c = { "clang-tidy" },
@@ -215,11 +215,11 @@ return {
 					html = { "htmlhint" },
 					astro = { "astro" },
 				},
-				vim.api.nvim_create_autocmd ({ "BufWritePost" }, {
-					callback = function () require ("lint").try_lint () end,
+				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+					callback = function() require("lint").try_lint() end,
 				}),
 			}
-			require ("conform").setup ({
+			require("conform").setup({
 				formatters_by_ft = {
 					c = { "clang-format" },
 					lua = { "stylua" },
@@ -231,7 +231,7 @@ return {
 					["*"] = { "codespell" },
 				},
 			})
-			require ("conform").setup ({
+			require("conform").setup({
 				format_on_save = {
 					-- These options will be passed to conform.format()
 					timeout_ms = 500,
@@ -239,7 +239,7 @@ return {
 				},
 			})
 			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-			require ("luasnip.loaders.from_vscode").lazy_load ()
+			require("luasnip.loaders.from_vscode").lazy_load()
 		end,
 	},
 	{
