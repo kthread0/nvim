@@ -2,9 +2,9 @@ return {
 	{
 		"sschleemilch/slimline.nvim",
 		dependencies = { "lewis6991/gitsigns.nvim", { "echasnovski/mini.icons", version = false } },
-		config = function()
-			require("mini.icons").setup()
-			require("slimline").setup({
+		config = function ()
+			require ("mini.icons").setup ()
+			require ("slimline").setup ({
 				bold = true, -- makes primary parts bold
 
 				-- Global style. Can be overwritten using `configs.<component>.style`

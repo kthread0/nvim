@@ -4,8 +4,8 @@ return {
 		main = "ibl",
 		---@module "ibl"
 		---@type ibl.config
-		config = function()
-			require("ibl").setup({
+		config = function ()
+			require ("ibl").setup ({
 				scope = {
 					enabled = true,
 					show_start = true,
