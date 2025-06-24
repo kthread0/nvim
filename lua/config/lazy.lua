@@ -29,7 +29,7 @@ vim.opt.redrawtime = 0
 -- Setup lazy.nvim
 require("lazy").setup({
 	defaults = {
-		lazy = false,
+		lazy = true,
 		version = "*",
 	},
 	spec = {
