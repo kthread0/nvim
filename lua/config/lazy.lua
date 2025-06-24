@@ -29,7 +29,7 @@ vim.opt.redrawtime = 0
 -- Setup lazy.nvim
 require("lazy").setup({
 	defaults = {
-		lazy = true,
+		lazy = false,
 		version = "*",
 	},
 	spec = {
@@ -54,7 +54,7 @@ require("lazy").setup({
 		-- set to `nil` to use hererocks when luarocks is not found
 		-- set to `true` to always use hererocks
 		-- set to `false` to always use luarocks
-		hererocks = false,
+		hererocks = nil,
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
