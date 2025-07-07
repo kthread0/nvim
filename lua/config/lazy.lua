@@ -54,11 +54,11 @@ require("lazy").setup({
 		-- set to `nil` to use hererocks when luarocks is not found
 		-- set to `true` to always use hererocks
 		-- set to `false` to always use luarocks
-		hererocks = nil,
+		hererocks = false,
 	},
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
-	install = { colorscheme = { "vesper" } },
+	install = { colorscheme = { "kanso" } },
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 	ui = {
