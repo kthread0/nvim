@@ -53,6 +53,7 @@ return {
 					"latex",
 					"rust",
 					"hyprlang",
+					"qmljs",
 				},
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
@@ -201,6 +202,7 @@ return {
 					"prettierd",
 					"htmlhint",
 					"hyprls",
+					"qmlls",
 				},
 				auto_update = true,
 			})
@@ -217,6 +219,8 @@ return {
 					html = { "htmlhint" },
 					astro = { "astro" },
 					hypr = { "hyprls" },
+					qml = { "qml" },
+					["*"] = { "codespell" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function() require("lint").try_lint() end,
@@ -231,6 +235,8 @@ return {
 					javascript = { "prettierd" },
 					typescript = { "prettierd" },
 					html = { "prettierd" },
+					hypr = { "hyprls" },
+					qml = { "qml" },
 					["*"] = { "codespell" },
 				},
 			})
