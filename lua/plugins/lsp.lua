@@ -52,6 +52,7 @@ return {
 					"commonlisp",
 					"latex",
 					"rust",
+					"hyprlang",
 				},
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
@@ -185,6 +186,7 @@ return {
 					"eslint",
 					"astro",
 					"mesonlsp",
+					"hyprls",
 				},
 				automatic_enable = true,
 				handlers = {},
@@ -198,6 +200,7 @@ return {
 					"eslint_d",
 					"prettierd",
 					"htmlhint",
+					"hyprls",
 				},
 				auto_update = true,
 			})
@@ -213,6 +216,7 @@ return {
 					typescript = { "eslint_d" },
 					html = { "htmlhint" },
 					astro = { "astro" },
+					hypr = { "hyprls" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 					callback = function() require("lint").try_lint() end,
