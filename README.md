@@ -1,31 +1,24 @@
 # nvim/
 
-<a href="https://dotfyle.com/vermillionpaws/nvim"><img src="https://dotfyle.com/vermillionpaws/nvim/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/vermillionpaws/nvim"><img src="https://dotfyle.com/vermillionpaws/nvim/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/vermillionpaws/nvim"><img src="https://dotfyle.com/vermillionpaws/nvim/badges/plugin-manager?style=flat" /></a>
+<a href="https://dotfyle.com/kthread0/nvim"><img src="https://dotfyle.com/kthread0/nvim/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/kthread0/nvim"><img src="https://dotfyle.com/kthread0/nvim/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/kthread0/nvim"><img src="https://dotfyle.com/kthread0/nvim/badges/plugin-manager?style=flat" /></a>
+
 
 ## Install Instructions
-###  Requirements
-- NodeJS for tree-sitter related tasks (npm)
-- tree-sitter-cli to build grammars
-- Lua tools (luarocks, stylua)
-- Code spelling (codespell)
-- cmake, meson, ninja, make (GNU flavor recommended, I tried BSD Make and didn't work, make a pull request if you figure it out!"
-- Wget and curl for networking related features such as downloading pre-built binaries
-- Rust toolchain (cargo, rustc, etc)
-- clangd, clang-tidy, clang-format for C/C++ development
-- Python for general plugins
-- ripgrep, fd, fzf for finder tools and fuzzy search
 
-### Optional requirements
-- ImageMagick for image support if you use kitty
-- lazygit for git UI integration
  > Install requires Neovim 0.9+. Always review the code before installing a configuration.
 
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:vermillionpaws/nvim ~/.config/nvim
+git clone git@github.com:kthread0/nvim ~/.config/kthread0/nvim
+```
+
+Open Neovim with this config:
+
+```sh
+NVIM_APPNAME=kthread0/nvim/ nvim
 ```
 
 ## Plugins
@@ -106,6 +99,7 @@ git clone git@github.com:vermillionpaws/nvim ~/.config/nvim
 + [rcarriga/nvim-notify](https://dotfyle.com/plugins/rcarriga/nvim-notify)
 ## Language Servers
 
++ bashls
 + clangd
 + cmake
 + html
