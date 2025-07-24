@@ -52,8 +52,6 @@ return {
 					"commonlisp",
 					"latex",
 					"rust",
-					"hyprlang",
-					"qmljs",
 				},
 				sync_install = false,
 				highlight = { enable = true, additional_vim_regex_highlighting = true },
@@ -187,7 +185,6 @@ return {
 					"eslint",
 					"astro",
 					"mesonlsp",
-					"hyprls",
 				},
 				automatic_enable = true,
 				handlers = {},
@@ -201,8 +198,6 @@ return {
 					"eslint_d",
 					"prettierd",
 					"htmlhint",
-					"hyprls",
-					"qmlls",
 				},
 				auto_update = true,
 			})
@@ -218,8 +213,6 @@ return {
 					typescript = { "eslint_d" },
 					html = { "htmlhint" },
 					astro = { "astro" },
-					hypr = { "hyprls" },
-					qml = { "qml" },
 					["*"] = { "codespell" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -235,8 +228,6 @@ return {
 					javascript = { "prettierd" },
 					typescript = { "prettierd" },
 					html = { "prettierd" },
-					hypr = { "hyprls" },
-					qml = { "qml" },
 					["*"] = { "codespell" },
 				},
 			})
