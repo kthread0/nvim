@@ -1,36 +1,33 @@
 return {
-	"webhooked/kanso.nvim",
+	"folke/tokyonight.nvim",
 	lazy = false,
-	priority = 1000,
 	config = function()
-		require("kanso").setup({
-			bold = true, -- enable bold fonts
-			italics = true, -- enable italics
-			compile = true, -- enable compiling the colorscheme
-			undercurl = true, -- enable undercurls
-			commentStyle = { italic = true },
-			functionStyle = {},
-			keywordStyle = { italic = true },
-			statementStyle = {},
-			typeStyle = {},
-			transparent = false, -- do not set background color
-			dimInactive = true, -- dim inactive window `:h hl-NormalNC`
-			terminalColors = true, -- define vim.g.terminal_color_{0,17}
-			colors = { -- add/modify theme and palette colors
-				palette = {},
-				theme = { zen = {}, pearl = {}, ink = {}, all = {} },
+		require("tokyonight").setup({
+			style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
+			light_style = "day", -- The theme is used when the background is set to light
+			transparent = false, -- Enable this to disable setting the background color
+			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
+			styles = {
+				-- Style to be applied to different syntax groups
+				-- Value is any valid attr-list value for `:help nvim_set_hl`
+				comments = { italic = true },
+				keywords = { italic = true },
+				functions = {},
+				variables = {},
+				-- Background styles. Can be "dark", "transparent" or "normal"
+				sidebars = "dark", -- style for sidebars, see below
+				floats = "dark", -- style for floating windows
 			},
-			overrides = function(colors) -- add/modify highlights
-				return {}
-			end,
-			theme = "zen", -- Load "zen" theme
-			background = { -- map the value of 'background' option to a theme
-				dark = "zen", -- try "ink" !
-				light = "pearl", -- try "mist" !
+			day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
+			dim_inactive = true, -- dims inactive windows
+			lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
+			cache = true, -- When set to true, the theme will be cached for better performance
+			---@type table<string, boolean|{enabled:boolean}>
+			plugins = {
+				all = package.loaded.lazy == nil,
+				auto = true,
 			},
 		})
-
-		-- setup must be called before loading
-		vim.cmd("colorscheme kanso")
+		vim.cmd([[colorscheme tokyonight]])
 	end,
 }

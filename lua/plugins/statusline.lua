@@ -1,96 +1,61 @@
 return {
-	{
-		"sschleemilch/slimline.nvim",
-		dependencies = { "lewis6991/gitsigns.nvim", { "echasnovski/mini.icons", version = false } },
-		config = function()
-			require("mini.icons").setup()
-			require("slimline").setup({
-				bold = true, -- makes primary parts bold
-
-				-- Global style. Can be overwritten using `configs.<component>.style`
-				style = "bg", -- or "fg"
-
-				-- Component placement
-				components = {
-					left = {
-						"mode",
-						"path",
-						"git",
-					},
-					center = {},
-					right = {
-						"diagnostics",
-						"filetype_lsp",
-						"progress",
+	"nvim-lualine/lualine.nvim",
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	lazy = false,
+	config = function()
+		require("lualine").setup({
+			options = {
+				icons_enabled = true,
+				theme = "tokyonight",
+				component_separators = { left = "", right = "" },
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {},
+					winbar = {},
+				},
+				ignore_focus = {},
+				always_divide_middle = true,
+				always_show_tabline = true,
+				globalstatus = false,
+				refresh = {
+					statusline = 1000,
+					tabline = 1000,
+					winbar = 1000,
+					refresh_time = 10, -- ~60fps
+					events = {
+						"WinEnter",
+						"BufEnter",
+						"BufWritePost",
+						"SessionLoadPost",
+						"FileChangedShellPost",
+						"VimResized",
+						"Filetype",
+						"CursorMoved",
+						"CursorMovedI",
+						"ModeChanged",
 					},
 				},
-
-				-- Component configuration
-				-- `<component>.style` can be used to overwrite the global 'style'
-				-- `<component>.hl = { primary = ..., secondary = ...}` can be used to overwrite global ones
-				-- `<component>.follow` can point to another component name to follow its style (e.g. 'progress' following 'mode' by default). Follow can be disabled by setting it to `false`
-				configs = {
-					mode = {
-						verbose = true, -- Mode as single letter or as a word
-						hl = {
-							normal = "Type",
-							insert = "Function",
-							pending = "Boolean",
-							visual = "Keyword",
-							command = "String",
-						},
-					},
-					path = {
-						directory = true, -- Whether to show the directory
-					},
-					git = {
-						icons = {
-							branch = "",
-							added = "+",
-							modified = "~",
-							removed = "-",
-						},
-					},
-					diagnostics = {
-						workspace = true, -- Whether diagnostics should show workspace diagnostics instead of current buffer
-						icons = {
-							ERROR = " ",
-							WARN = " ",
-							HINT = " ",
-							INFO = " ",
-						},
-					},
-					filetype_lsp = {},
-					progress = {
-						follow = "mode",
-						column = true, -- Enables a secondary section with the cursor column
-						icon = " ",
-					},
-					recording = {
-						icon = " ",
-					},
-				},
-
-				-- Global highlights
-				hl = {
-					base = "StatusLine", -- highlight of the background. Change it .e.g to `StatusLine` if you do not want it to be transparent
-					primary = "Normal", -- highlight of primary parts (e.g. filename)
-					secondary = "Comment", -- highlight of secondary parts (e.g. filepath)
-				},
-				spaces = {
-					components = "",
-					left = "",
-					right = "",
-				},
-				sep = {
-					hide = {
-						first = true,
-						last = true,
-					},
-					left = "",
-					right = "",
-				},
-			})
-		end,
-	},
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_c = { "filename" },
+				lualine_x = { "encoding", "fileformat", "filetype" },
+				lualine_y = { "progress" },
+				lualine_z = { "location" },
+			},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filename" },
+				lualine_x = { "location" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			tabline = {},
+			winbar = {},
+			inactive_winbar = {},
+			extensions = {},
+		})
+	end,
 }

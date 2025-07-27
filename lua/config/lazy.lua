@@ -24,7 +24,6 @@ vim.opt.termguicolors = true
 vim.opt.showtabline = 2
 vim.opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
 vim.opt.number = true
-vim.opt.redrawtime = 0
 
 -- Setup lazy.nvim
 require("lazy").setup({
