@@ -159,6 +159,7 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"clangd",
+					"asm_lsp",
 				},
 				automatic_enable = true,
 				handlers = {},
@@ -167,6 +168,7 @@ return {
 			require("mason-tool-installer").setup({
 				ensure_installed = {
 					"stylua",
+					"asmfmt",
 				},
 				auto_update = true,
 			})
@@ -176,6 +178,7 @@ return {
 				{
 					lua = { "luacheck" },
 					c = { "clang-tidy" },
+					asm = { "asm_lsp" },
 					["*"] = { "codespell" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -186,6 +189,7 @@ return {
 				formatters_by_ft = {
 					c = { "clang-format" },
 					lua = { "stylua" },
+					asm = { "asmfmt" },
 					["*"] = { "codespell" },
 				},
 			})
@@ -259,7 +263,15 @@ return {
 			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
-			fuzzy = { implementation = "rust" },
+			fuzzy = {
+				implementation = "rust",
+				sorts = {
+					"exact",
+					"score", -- Primary sort: by fuzzy matching score
+					"sort_text", -- Secondary sort: by sortText field if scores are equal
+					"label", -- Tertiary sort: by label if still tied
+				},
+			},
 		},
 		opts_extend = { "sources.default" },
 	},
