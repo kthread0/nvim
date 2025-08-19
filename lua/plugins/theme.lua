@@ -1,32 +1,37 @@
 return {
-	"f4z3r/gruvbox-material.nvim",
-	name = "gruvbox-material",
+	"marko-cerovac/material.nvim",
 	lazy = false,
-	priority = 1000,
 	config = function()
-		require("gruvbox-material").setup({
-			italics = true, -- enable italics in general
-			contrast = "hard", -- set contrast, can be any of "hard", "medium", "soft"
-			comments = {
-				italics = true, -- enable italic comments
+		require("material").setup({
+			styles = { -- Give comments style such as bold, italic, underline etc.
+				comments = { italic = true },
+				strings = { bold = true },
+				keywords = { underline = true },
+				functions = { bold = true, undercurl = true },
+				variables = {},
+				operators = {},
+				types = {},
 			},
-			background = {
-				transparent = false, -- set the background to be opaque
+
+			plugins = { -- Uncomment the plugins that you use to highlight them
+				-- Available plugins:
+				"blink",
+				"dap",
+				"dashboard",
+				"gitsigns",
+				"illuminate",
+				"noice",
+				"nvim-notify",
+				"nvim-web-devicons",
+				"telescope",
+				"trouble",
+				"which-key",
 			},
-			float = {
-				force_background = false, -- set to true to force backgrounds on floats even when
-				-- background.transparent is set
-				background_color = nil, -- set color for float backgrounds. If nil, uses the default color set
-				-- by the color scheme
-			},
-			signs = {
-				force_background = false, -- set to true to force backgrounds on signs even when
-				-- background.transparent is set
-				background_color = nil, -- set color for sign backgrounds. If nil, uses the default color set
-				-- by the color scheme
-			},
-			customize = nil, -- customize the theme in any way you desire, see below what this
-			-- configuration accepts
+
+			lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
+
+			async_loading = true, -- Load parts of the theme asynchronously for faster startup (turned on by default)
 		})
+		vim.cmd("colorscheme material-deep-ocean")
 	end,
 }
