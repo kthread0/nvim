@@ -1,33 +1,32 @@
 return {
-	"folke/tokyonight.nvim",
+	"f4z3r/gruvbox-material.nvim",
+	name = "gruvbox-material",
 	lazy = false,
+	priority = 1000,
 	config = function()
-		require("tokyonight").setup({
-			style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and `day`
-			light_style = "day", -- The theme is used when the background is set to light
-			transparent = false, -- Enable this to disable setting the background color
-			terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-			styles = {
-				-- Style to be applied to different syntax groups
-				-- Value is any valid attr-list value for `:help nvim_set_hl`
-				comments = { italic = true },
-				keywords = { italic = true },
-				functions = {},
-				variables = {},
-				-- Background styles. Can be "dark", "transparent" or "normal"
-				sidebars = "dark", -- style for sidebars, see below
-				floats = "dark", -- style for floating windows
+		require("gruvbox-material").setup({
+			italics = true, -- enable italics in general
+			contrast = "hard", -- set contrast, can be any of "hard", "medium", "soft"
+			comments = {
+				italics = true, -- enable italic comments
 			},
-			day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-			dim_inactive = true, -- dims inactive windows
-			lualine_bold = true, -- When `true`, section headers in the lualine theme will be bold
-			cache = true, -- When set to true, the theme will be cached for better performance
-			---@type table<string, boolean|{enabled:boolean}>
-			plugins = {
-				all = package.loaded.lazy == nil,
-				auto = true,
+			background = {
+				transparent = false, -- set the background to be opaque
 			},
+			float = {
+				force_background = false, -- set to true to force backgrounds on floats even when
+				-- background.transparent is set
+				background_color = nil, -- set color for float backgrounds. If nil, uses the default color set
+				-- by the color scheme
+			},
+			signs = {
+				force_background = false, -- set to true to force backgrounds on signs even when
+				-- background.transparent is set
+				background_color = nil, -- set color for sign backgrounds. If nil, uses the default color set
+				-- by the color scheme
+			},
+			customize = nil, -- customize the theme in any way you desire, see below what this
+			-- configuration accepts
 		})
-		vim.cmd([[colorscheme tokyonight]])
 	end,
 }
