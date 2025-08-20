@@ -1,37 +1,13 @@
 return {
-	"marko-cerovac/material.nvim",
+	"bluz71/vim-moonfly-colors",
+	name = "moonfly",
 	lazy = false,
+	priority = 1000,
 	config = function()
-		require("material").setup({
-			styles = { -- Give comments style such as bold, italic, underline etc.
-				comments = { italic = true },
-				strings = { bold = true },
-				keywords = { underline = true },
-				functions = { bold = true, undercurl = true },
-				variables = {},
-				operators = {},
-				types = {},
-			},
-
-			plugins = { -- Uncomment the plugins that you use to highlight them
-				-- Available plugins:
-				"blink",
-				"dap",
-				"dashboard",
-				"gitsigns",
-				"illuminate",
-				"noice",
-				"nvim-notify",
-				"nvim-web-devicons",
-				"telescope",
-				"trouble",
-				"which-key",
-			},
-
-			lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
-
-			async_loading = true, -- Load parts of the theme asynchronously for faster startup (turned on by default)
-		})
-		vim.cmd("colorscheme material-deep-ocean")
+		vim.cmd("colorscheme moonfly")
+		vim.g.moonflyCursorColor = true
+		vim.g.moonflyTransparent = true
+		vim.g.moonflyUnderlineMatchParen = true
+		vim.g.moonflyVirtualTextColor = true
 	end,
 }
