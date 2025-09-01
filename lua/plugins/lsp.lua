@@ -159,6 +159,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
+					"pylsp",
 					"clangd",
 					"asm_lsp",
 					"codebook",
@@ -171,6 +172,8 @@ return {
 				ensure_installed = {
 					"stylua",
 					"asmfmt",
+					"flake8",
+					"autopep8",
 				},
 				auto_update = true,
 			})
@@ -178,9 +181,10 @@ return {
 			require("hlargs").enable()
 			require("lint").linters_by_ft = {
 				{
-					lua = { "luacheck" },
+					lua = { "lua_ls" },
 					c = { "clang-tidy" },
 					asm = { "asm_lsp" },
+					python = { "flake8" },
 					["*"] = { "codespell", "codebook" },
 				},
 				vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -192,6 +196,7 @@ return {
 					c = { "clang-format" },
 					lua = { "stylua" },
 					asm = { "asmfmt" },
+					python = { "autopep8" },
 					["*"] = { "codespell" },
 				},
 			})
