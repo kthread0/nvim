@@ -50,5 +50,6 @@ return {
 				-- telescope = true,
 			},
 		})
+		vim.cmd([[colorscheme tokyonight-night]])
 	end,
 }
