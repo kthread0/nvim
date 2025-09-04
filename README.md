@@ -1,1 +1,2 @@
-Very awesome cool neovim setup epic !!!!!!!
+# neovim setup
+Entirely focused on Python and C development, might expand into Rust.
