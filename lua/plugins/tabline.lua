@@ -3,7 +3,25 @@ return {
 		"nanozuki/tabby.nvim",
 		config = function()
 			require("tabby").setup({
-				nerdfont = true,
+				preset = "active_wins_at_tail",
+				option = {
+					theme = {
+						fill = "TabLineFill", -- tabline background
+						head = "TabLine", -- head element highlight
+						current_tab = "TabLineSel", -- current tab label highlight
+						tab = "TabLine", -- other tab label highlight
+						win = "TabLine", -- window highlight
+						tail = "TabLine", -- tail element highlight
+					},
+					nerdfont = true, -- whether use nerdfont
+					lualine_theme = "carbonfox", -- lualine theme name
+					tab_name = {
+						name_fallback = function(tabid) return tabid end,
+					},
+					buf_name = {
+						mode = "unique", -- or 'relative', 'tail', 'shorten'
+					},
+				},
 			})
 			vim.api.nvim_set_keymap("n", "<leader>ta", ":$tabnew<CR>", { noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { noremap = true })
