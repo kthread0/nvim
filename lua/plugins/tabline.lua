@@ -14,7 +14,7 @@ return {
 						tail = "TabLine", -- tail element highlight
 					},
 					nerdfont = true, -- whether use nerdfont
-					lualine_theme = "carbonfox", -- lualine theme name
+					lualine_theme = "kanagawa", -- lualine theme name
 					tab_name = {
 						name_fallback = function(tabid) return tabid end,
 					},
