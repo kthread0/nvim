@@ -7,7 +7,6 @@ return {
 	"rcarriga/nvim-dap-ui",
 	"mfussenegger/nvim-lint",
 	"xzbdmw/colorful-menu.nvim",
-	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp", dependencies = { "rafamadriz/friendly-snippets" } },
 	"jay-babu/mason-nvim-dap.nvim",
 	{ "nvim-tree/nvim-web-devicons", opts = {} },
 	{ "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
@@ -27,6 +26,7 @@ return {
 				"linkerscript",
 				"nasm",
 				"regex",
+				"query",
 				"python",
 				"markdown",
 				"markdown_inline",
@@ -173,6 +173,7 @@ return {
 				"asmfmt",
 				"flake8",
 				"autopep8",
+				"codespell"
 			},
 			auto_update = true,
 		})
@@ -180,10 +181,10 @@ return {
 		require("hlargs").enable()
 		require("lint").linters_by_ft = {
 			{
-				lua = { "luacheck" },
+				lua = { "luacheck", "lua_ls" },
 				c = { "clang-tidy" },
 				asm = { "asm_lsp" },
-				python = { "flake8" },
+				python = { "flake8", "pylsp" },
 				["*"] = { "codespell", "codebook" },
 			},
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -193,10 +194,10 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				c = { "clang-format" },
-				lua = { "stylua" },
+				lua = { "stylua", "lua_ls" },
 				asm = { "asmfmt" },
 				python = { "autopep8" },
-				["*"] = { "codespell" },
+				["*"] = { "codespell", "codebook" },
 			},
 		})
 		require("conform").setup({

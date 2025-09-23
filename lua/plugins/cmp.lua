@@ -1,67 +1,86 @@
 return {
-	"saghen/blink.cmp", build = "cargo build --release",
+	"saghen/blink.cmp",
+	dependencies = { "rafamadriz/friendly-snippets", 	{ "L3MON4D3/LuaSnip", build = "make install_jsregexp"}, },
+
+	build = "cargo build --release",
 
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-			snippets = { preset = "luasnip" },
-			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-			-- 'super-tab' for mappings similar to vscode (tab to accept)
-			-- 'enter' for enter to accept
-			-- 'none' for no mappings
-			--
-			-- All presets have the following mappings:
-			-- C-space: Open menu or open docs if already open
-			-- C-n/C-p or Up/Down: Select next/previous item
-			-- C-e: Hide menu
-			-- C-k: Toggle signature help (if signature.enabled = true)
-			--
-			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = "super-tab" },
+		keymap = { preset = "default" },
+		snippets = { preset = 'luasnip' },
 
-			appearance = {
-				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "normal",
+		appearance = {
+			highlight_ns = vim.api.nvim_create_namespace('blink_cmp'),
+			nerd_font_variant = "normal",
+		},
+
+		fuzzy = {
+			implementation = "rust",
+			max_typos = 0,
+			sorts = {
+				"exact",
+				"score",
+				"sort_text",
+				"label",
+				"kind"
 			},
+		},
 
-			-- (Default) Only show the documentation popup when manually triggered
-			completion = {
-				keyword = { range = "full" },
-				ghost_text = { enabled = true, show_without_selection = true },
-				menu = { auto_show = true, draw = { treesitter = { "lsp" } } },
-				documentation = { auto_show = true },
-			},
-
-			-- Default list of enabled providers defined so that you can extend it
-			-- elsewhere in your config, without redefining it, due to `opts_extend`
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "cmdline" },
-			},
-
-			signature = {
+		signature = {
+			enabled = true,
+			trigger = {
 				enabled = true,
-				trigger = {
-					enabled = true,
-					show_on_keyword = true,
-					show_on_insert = true,
-				},
+				show_on_keyword = true,
 			},
+			window = {
+				min_width = 1,
+				max_width = 100,
+				max_height = 10,
+				border = nil, -- Defaults to `vim.o.winborder` on nvim 0.11+ or 'padded' when not defined/<=0.10
+				winblend = 0,
+				winhighlight = "Normal:BlinkCmpSignatureHelp,FloatBorder:BlinkCmpSignatureHelpBorder",
+				scrollbar = true, -- Note that the gutter will be disabled when border ~= 'none'
+				direction_priority = { "n", "s" },
 
-			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-			--
-			-- See the fuzzy documentation for more information
-			fuzzy = {
-				implementation = "rust",
-				sorts = {
-					"exact",
-					"score", -- Primary sort: by fuzzy matching score
-					"sort_text", -- Secondary sort: by sortText field if scores are equal
-					"label", -- Tertiary sort: by label if still tied
+				treesitter_highlighting = true,
+				show_documentation = true,
+			},
+		},
+
+		sources = {
+			default = { "lsp", "path", "snippets", "buffer" },
+		},
+
+		completion = {
+			keyword = {
+				range = "full",
+			},
+			trigger = {
+				prefetch_on_insert = true,
+				show_in_snippet = true,
+				show_on_backspace = true,
+				show_on_backspace_in_keyword = true,
+				show_on_insert = true,
+			},
+			documentation = {
+				auto_show = true,
+				treesitter_highlighting = true,
+			},
+			ghost_text = {
+				enabled = true,
+			},
+			list = {
+				max_items = 256,
+				selection = {
+					preselect = true,
+					auto_insert = true,
+				},
+				cycle = {
+					from_bottom = true,
+					from_top = true,
 				},
 			},
 		},
-		opts_extend = { "sources.default" },
+	},
 }
