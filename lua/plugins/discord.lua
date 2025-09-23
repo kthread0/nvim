@@ -21,14 +21,6 @@ return {
 					},
 				},
 			},
-			plugins = {
-				"cord.plugins.diagnostics", -- Enable diagnostics plugin with default settings
-
-				["cord.plugins.diagnostics"] = { -- Enable AND configure diagnostics plugin
-					scope = "workspace", -- Set scope to 'workspace' instead of default 'buffer'
-					severity = vim.diagnostic.severity.WARN, -- Show warnings and above
-				},
-			},
 		})
 	end,
 }

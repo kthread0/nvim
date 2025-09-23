@@ -6,7 +6,7 @@ return {
 		require("trouble").statusline({
 			mode = "lsp_document_symbols",
 			groups = {},
-			title = false,
+			title = true,
 			filter = { range = true },
 			format = "{kind_icon}{symbol.name:Normal}",
 			-- The following line is needed to fix the background color
@@ -16,7 +16,7 @@ return {
 		require("lualine").setup({
 			options = {
 				icons_enabled = true,
-				theme = "kanagawa",
+				theme = "tokyonight",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
